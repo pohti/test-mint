@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mintfe-dev-15447-authRole",
+      "UnauthRoleArn": "arn:aws:iam::230106472278:role/amplify-mintfe-dev-15447-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::230106472278:role/amplify-mintfe-dev-15447-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mintfe-dev-15447-deployment",
+      "UnauthRoleName": "amplify-mintfe-dev-15447-unauthRole",
+      "StackName": "amplify-mintfe-dev-15447",
+      "StackId": "arn:aws:cloudformation:us-east-1:230106472278:stack/amplify-mintfe-dev-15447/af8ca6d0-b173-11ee-a4aa-120959dc5195",
+      "AmplifyAppId": "d2njc11c0qib9e"
+    },
+    "categories": {
+      "auth": {
+        "mintfeaf892fde": {}
+      }
+    }
+  }
+}
