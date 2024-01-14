@@ -6,32 +6,23 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import config from './amplifyconfiguration.json';
 import MintComponent from './components/Mint';
 import MintDetail from './components/MintDetail';
+import { fetchAuthSession } from 'aws-amplify/auth';
+import  { useEffect } from 'react';
+
 
 Amplify.configure(config);
 
 export function App({ signOut, user }: WithAuthenticatorProps) {
-  const sendRequest = async () => {
-    try {
-      // Get the authentication tokens directly from the user object
-      // const idToken = typeof user?.signInDetails?.loginId === 'string' ? user?.signInDetails?.loginId : user?.signInDetails?.loginId?.token?.getJwtToken?.();
-
-      console.log("User:", user);
-      const headers = {
-        Authorization: `Bearer ${test}`,
-      };
-
-      // Make a request to your backend with the authentication token
-      const response = await fetch('https://your-backend-api-endpoint/resource', {
-        method: 'GET',
-        headers,
-      });
-
-      const data = await response.json();
-      console.log('Backend response:', data);
-    } catch (error) {
-      console.error('Backend request error:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const { idToken } = (await fetchAuthSession()).tokens ?? {};
+      if (idToken) {
+        localStorage.setItem('accessToken', idToken.toString());
+        console.log('idToken:', idToken.toString());
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <Router>
@@ -42,7 +33,6 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
           <Route path="/mints" element={<MintDetail id={''} />} />
         </Routes>
         <button onClick={signOut}>Sign out</button>
-        <button onClick={sendRequest}>Send Request to Backend</button>
       </>
     </Router>
   );
