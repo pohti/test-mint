@@ -12,30 +12,58 @@ import  { useEffect } from 'react';
 
 Amplify.configure(config);
 
-export function App({ signOut, user }: WithAuthenticatorProps) {
+// export function App({ signOut, user }: WithAuthenticatorProps) {
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const { idToken } = (await fetchAuthSession()).tokens ?? {};
+//       if (idToken) {
+//         localStorage.setItem('accessToken', idToken.toString());
+//         console.log('idToken:', idToken.toString());
+//       }
+//     };
+//     fetchData();
+//   }, []);
+
+//   return (
+//     <Router>
+//       <>
+//         <h1>Hello {user?.username}</h1>
+//         <MintComponent />
+//         <Routes>
+//           <Route path="/mints" element={<MintDetail id={''} />} />
+//         </Routes>
+//         <button onClick={signOut}>Sign out</button>
+//       </>
+//     </Router>
+//   );
+// }
+
+// export default withAuthenticator(App);
+
+export function App() {
   useEffect(() => {
-    const fetchData = async () => {
-      const { idToken } = (await fetchAuthSession()).tokens ?? {};
-      if (idToken) {
-        localStorage.setItem('accessToken', idToken.toString());
-        console.log('idToken:', idToken.toString());
-      }
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const { idToken } = (await fetchAuthSession()).tokens ?? {};
+    //   if (idToken) {
+    //     localStorage.setItem('accessToken', idToken.toString());
+    //     console.log('idToken:', idToken.toString());
+    //   }
+    // };
+    // fetchData();
   }, []);
 
   return (
     <Router>
       <>
-        <h1>Hello {user?.username}</h1>
+        <h1>Hello user</h1>
         <MintComponent />
         <Routes>
           <Route path="/mints" element={<MintDetail id={''} />} />
         </Routes>
-        <button onClick={signOut}>Sign out</button>
+        <button>Sign out</button>
       </>
     </Router>
   );
 }
 
-export default withAuthenticator(App);
+export default App;
