@@ -4,13 +4,31 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import config from './amplifyconfiguration.json';
-import MintComponent from './components/Mint';
-import MintDetail from './components/MintDetail';
-import { fetchAuthSession } from 'aws-amplify/auth';
-import  { useEffect } from 'react';
 
+import { fetchAuthSession } from 'aws-amplify/auth';
+import  { useEffect, useState } from 'react';
+
+
+import Box from '@mui/material/Box';
+
+import CustomHeader from './components/CustomHeader';
+import CreateMint from './components/CreateMint';
+import MintListComponent from './components/MinList';
+// import MintComponent from './components/Mint';
+// import MintDetail from './components/MintDetail';
 
 Amplify.configure(config);
+
+interface Mint {
+  mintId : number;
+  name: string;
+  description: string;
+  image:string;
+}
+
+interface MintItems {
+  mintItems: Mint[]
+}
 
 // export function App({ signOut, user }: WithAuthenticatorProps) {
 //   useEffect(() => {
@@ -54,16 +72,30 @@ export function App() {
 
   return (
     <Router>
-      <>
-        <h1>Hello user</h1>
-        <MintComponent />
-        <Routes>
-          <Route path="/mints" element={<MintDetail id={''} />} />
-        </Routes>
-        <button>Sign out</button>
-      </>
+        <CustomHeader username="John" />
+        <Box style={mainBoxStyle}>
+          <Routes>
+            <Route path="/create"   element={<CreateMint />}  />
+            <Route path="/list"     element={<MintListComponent mintItems={mintItems}/>} />
+          </Routes>
+        </Box>
     </Router>
   );
 }
 
 export default App;
+
+const mintItems = [
+  {
+    mintId : 1,
+    name: 'test',
+    description: 'test description',
+    image: 'img url'
+  }
+]
+
+const mainBoxStyle = {
+  padding: "20px 10px",
+  backgroundColor: "#e8e8e8",
+  height: "100vh"
+}

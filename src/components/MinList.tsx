@@ -10,10 +10,10 @@ interface Mint {
 }
 
 interface MintListComponentProps {
-    mints: Mint[];
+    mintItems: Mint[];
 }
 
-const MintListComponent: React.FC<MintListComponentProps> = () => {
+const MintListComponent: React.FC<MintListComponentProps> = ({mintItems}) => {
     const navigate = useNavigate();
     const [mints, setMints] = useState<Mint[]>([]);
 
