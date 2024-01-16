@@ -2,17 +2,19 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
-import React from 'react';
+
+// import type { WithAuthenticatorProps } from '@aws-amplify/ui-react';
 import { Link, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
-    username: string;
+    username: string,
 }
 
-const CustomHeader: React.FC<HeaderProps> = ({ username }) => {
+
+const CustomHeader = ({ username }: HeaderProps) => {
     const location = useLocation();
 
-    const handleLogout = () => { console.log('Logout event') }
+    const handleLogout = () => { console.log('handleLogout') }
 
     return (
         <Box style={headerStyle}>
@@ -44,6 +46,7 @@ const CustomHeader: React.FC<HeaderProps> = ({ username }) => {
 }
 
 export default CustomHeader;
+// export default withAuthenticator(CustomHeader);
 
 const headerStyle = {
     backgroundColor: '#e6bb47',
